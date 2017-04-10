@@ -115,67 +115,27 @@ function syncSidebar() {
 /* Basemap Layers */
 
 
-// mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-osm = L.tileLayer(
-    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        //attribution: '&copy; ' + mapLink + ' Contributors',
-        maxZoom: 17
-    });
+var watercolor = new L.StamenTileLayer("watercolor",{attribution: 'Tiles &copy; Esri &mdrthe GIS User Community'});
 
-// watercolor = L.tileLayer.provider('Stamen.Watercolor');
+var google_hybrid = L.gridLayer.googleMutant({
+    type: 'hybrid',
 
-// pirate = L.tileLayer.provider('MapBox', {
-//     id: 'geomajor56.05gcbj88',
-//     accessToken: 'pk.eyJ1IjoiZ2VvbWFqb3I1NiIsImEiOiJjaW9iejZ4cGYwNDc0dnpsejBmc2g0Z3QzIn0.8hKDWYbdQW7cbIE7eeu4-A'
-// });
+});
+var google_terrain = L.gridLayer.googleMutant({
+    type: 'terrain',
+
+});
+
+var google_streets = L.gridLayer.googleMutant({
+    type: 'roadmap',
+
+});
 
 
-// var mapquestOSM = L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
-//     maxZoom: 19,
-//     subdomains: ["otile1-s", "otile2-s", "otile3-s", "otile4-s"],
-//     attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-// });
-// var mapquestOAM = L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
-//     maxZoom: 18,
-//     subdomains: ["otile1-s", "otile2-s", "otile3-s", "otile4-s"],
-//     attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-// });
-// var mapquestHYB = L.layerGroup([L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
-//     maxZoom: 18,
-//     subdomains: ["otile1-s", "otile2-s", "otile3-s", "otile4-s"]
-// }), L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
-//     maxZoom: 19,
-//     subdomains: ["otile1-s", "otile2-s", "otile3-s", "otile4-s"],
-//     attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-// })]);
-//
-// var MapQuestOpen_OSM = L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}', {
-// 	type: 'map',
-// 	ext: 'jpg',
-// 	attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-// 	subdomains: '1234'
-// });
 
-// var Thunderforest_TransportDark = L.tileLayer('http://{s}.tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png', {
-// 	attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-// 	maxZoom: 19
-// });
-
-// var Thunderforest_Pioneer = L.tileLayer('http://{s}.tile.thunderforest.com/pioneer/{z}/{x}/{y}.png', {
-// 	attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-// });
-
-// var Stamen_Watercolor = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-// 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-// 	subdomains: 'abcd',
-// 	minZoom: 1,
-// 	maxZoom: 16,
-// 	ext: 'png'
-// });
-
-// var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-//     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-// });
+var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
 
 /* Overlay Layers */
 var highlight = L.geoJson(null);
@@ -302,33 +262,36 @@ $.getJSON("data/points.geojson", function (data) {
 map = L.map("map", {
     zoom: 13,
     center: [41.74737922562798, -70.0688695],
-    layers: [osm, brewster, points, highlight],
+    layers: [watercolor, brewster, points, parcels, highlight],
     zoomControl: false,
     attributionControl: false
 });
 
 L.control.navbar().addTo(map);
 
-map.on("zoomend", function (e) {
-    console.log("zoom level is " + map.getZoom())
-    zoom = map.getZoom();
-    if (zoom <= 15) {
-        map.removeLayer(parcels);
-        // map.removeLayer(mapquestHYB);
-        // map.addLayer(pirate);
-    } else if (zoom > 14) {
-        map.addLayer(parcels);
-        // map.removeLayer(pirate);
-        // map.addLayer(mapquestHYB);
-    }
-});
+// map.on("zoomend", function (e) {
+//     zoom = map.getZoom();
+//     if (zoom <= 17) {
+//         map.removeLayer(parcels);
+//
+//     } else if (zoom > 15) {
+//         map.addLayer(parcels);
+//
+//     }
+// });
 
 // **********************************    Leaflet Plugins     ****************************************************
+var zoomControl = L.control.zoom({
+    position: "topleft"
+}).addTo(map);
+
 L.easyPrint({
-    title: 'My awesome print button',
+    title: 'Print current view',
     position: 'topleft',
     elementsToHide: 'p, h2'
 }).addTo(map);
+
+// var miniMap = new L.Control.MiniMap(google_streets).addTo(map);
 // **************************************************************************************************************
 
 /* Filter sidebar feature list to only show features in current map bounds */
@@ -362,35 +325,36 @@ attributionControl.onAdd = function (map) {
 };
 map.addControl(attributionControl);
 
-var zoomControl = L.control.zoom({
-    position: "topleft"
-}).addTo(map);
-
+// var zoomControl = L.control.zoom({
+//     position: "topleft"
+// }).addTo(map);
 
 
 //
 /* Larger screens get expanded layer control and visible sidebar */
 if (document.body.clientWidth <= 767) {
-  var isCollapsed = true;
+    var isCollapsed = true;
 } else {
-  var isCollapsed = false;
+    var isCollapsed = false;
 }
 
 var baseLayers = {
-  "Street Map": osm,
-  // "Aerial Imagery": Esri_WorldImagery,
-  // "Imagery with Streets": mapquestHYB
+    "Google Satellite": google_hybrid,
+    "Google Streets": google_streets,
+    "Google Terrain": google_terrain,
+    "Stamen Watercolor": watercolor
+
 };
 
 var groupedOverlays = {
-  "Points of Interest": {
-    "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Theaters": brewster,
-    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Museums": brewster
-  }
+    "Points of Interest": {
+        "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Theaters": brewster,
+        "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Museums": brewster
+    }
 };
 
 var layerControl = L.control.groupedLayers(baseLayers, {
-  // collapsed: notCollapsed
+    // collapsed: notCollapsed
 }).addTo(map);
 //
 
