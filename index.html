@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
@@ -11,276 +11,275 @@
     <meta name="author" content="">
     <title>Brewster Conservation Trust</title>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZCou0awDsld16RrRKjMeQN4Mx_Ue89iY" async defer></script>
 
-   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet"
-         integrity="sha384-h21C2fcDk/eFsW9sC9h0dhokq5pDinLNklTKoxIZRUn3+hvmgQSffLLQ4G4l2eEr" crossorigin="anonymous">
+    <!--google maps api with key-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZCou0awDsld16RrRKjMeQN4Mx_Ue89iY" async
+            defer></script>
+
+    <!--jquery library-->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+
+
+
+    <!--assorted library plugins css-->
+
+
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet"-->
+          <!--integrity="sha384-G3G7OsJCbOk1USkOY4RfeX1z27YaWrZ1YuaQ5tbuawed9IoreRDpWpTkZLXQfPm3" crossorigin="anonymous">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/solar.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+    <link rel="stylesheet"
+          href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
     <link rel="stylesheet" href="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.min.css">
     <link rel="stylesheet" href="assets/js/leaflet.navbar/Leaflet.NavBar.css">
     <link rel="stylesheet" href="assets/css/app.css">
+
+    <!-- nanogallery2 -->
+    <link href="assets/js/nanogallery2/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="assets/js/nanogallery2/jquery.nanogallery2.min.js"></script>
+
+    <!--bootstrap tour plugin-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/css/bootstrap-tour.min.css"/>
 
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon-76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon-120.png">
     <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon-152.png">
     <link rel="icon" sizes="196x196" href="assets/img/favicon-196.png">
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
-  </head>
+</head>
 
-  <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
+<body>
+
+<!--welcome modal container-->
+<div id="welcome" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Brewster Conservation Trust</h3>
+            </div>
+            <div class="modal-body">
+                <h3>Welcome</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis risus vulputate, condimentum libero ut, lacinia felis.
+                    Nam feugiat odio semper nunc suscipit semper euullamcorper neque. In eu elementum orci, quis maximus augue. Nulla in augue
+                    quis turpis hendrerit faucibus. Vivamus rutrum, mauris ut ultrices vulputate, neque massa ullamcorper
+                    sem, ultricies porta est ligula et nisl. Integer elementum purus luctus eros consequat, vel vehicula mi porttitor.
+                    Nullam tellus est, blandit nec leo non, vehicula egestas tellus.Suspendisse eros augue, hendrerit at sagittis
+                    eu, sodales sit amet sapien. Integer at enim fringilla, elementum ipsum eu, volutpat lacus.
+                <p>
+
+                <h3>Getting Started</h3>
+
+                <p>After closing this window, click on any icon for information on property.
+                    Or take a short guided tour for more navigation tips
+
+
+            </div>
+            <div class="modal-footer">
+                </p><button id="tour-btn" type="button" class="btn btn-success">Guided Tour</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!--<div class="navbar navbar-fixed-top" role="navigation">-->
+<div class="navbar navbar-fixed-top" role="navigation">
+<!--<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <div class="container-fluid">
         <div class="navbar-header">
-          <div class="navbar-icon-container">
-            <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
-            <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
-          </div>
-          <a class="navbar-brand" href="#">Brewster Conservation Trust</a>
+            <div class="navbar-icon-container"><a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+                <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i
+                        class="fa fa-search fa-lg white"></i></a>
+            </div>
+            <a class="navbar-brand" href="#">Brewster Conservation Trust</a>
         </div>
         <div class="navbar-collapse collapse">
-          <!--<form class="navbar-form navbar-right" role="search">-->
-            <!--<div class="form-group has-feedback">-->
-                <!--<input id="searchbox" type="text" placeholder="Search" class="form-control">-->
-                <!--<span id="searchicon" class="fa fa-search form-control-feedback"></span>-->
-            <!--</div>-->
-          <!--</form>-->
-          <ul class="nav navbar-nav">
-            <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>-->
-            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>
-            <!--<li class="dropdown">-->
-              <!--<a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe white"></i>&nbsp;&nbsp;Tools <b class="caret"></b></a>-->
-              <!--<ul class="dropdown-menu">-->
-                <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>-->
-                <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>-->
-                <!--<li class="divider hidden-xs"></li>-->
-                <!--<li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="login-btn"><i class="fa fa-user"></i>&nbsp;&nbsp;Login</a></li>-->
-              <!--</ul>-->
-            </li>
-            <!--<li class="dropdown">-->
-                <!--<a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Download <b class="caret"></b></a>-->
-                <!--<ul class="dropdown-menu">-->
-                  <!--<li><a href="data/boroughs.geojson" download="boroughs.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Boroughs</a></li>-->
-                  <!--<li><a href="data/subways.geojson" download="subways.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Subway Lines</a></li>-->
-                  <!--<li><a href="data/DOITT_THEATER_01_13SEPT2010.geojson" download="theaters.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Theaters</a></li>-->
-                  <!--<li><a href="data/DOITT_MUSEUM_01_13SEPT2010.geojson" download="museums.geojson" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Museums</a></li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Search Grantors List</a></li>
-          </ul>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>
-
-    <div id="container">
-      <div id="sidebar">
-        <div class="sidebar-wrapper">
-          <div class="panel panel-default" id="features">
-            <div class="panel-heading">
-              <h3 class="panel-title">List of Grantors
-              <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-xs-12 col-md-12">
-                  <input type="text" class="form-control search" placeholder="Search by name" />
-                </div>
-                <!--<div class="col-xs-4 col-md-4">-->
-                  <!--<button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>-->
-                <!--</div>-->
-              </div>
-            </div>
-            <div class="sidebar-table">
-              <table class="table table-hover" id="feature-list">
-                <thead class="hidden">
-                  <tr>
-                    <th>Icon</th>
-                  <tr>
-                  <tr>
-                    <th>Name</th>
-                  <tr>
-                  <tr>
-                    <th>Chevron</th>
-                  <tr>
-                </thead>
-                <tbody class="list"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="map"></div>
-    </div>
-    <div id="loading">
-      <div class="loading-indicator">
-        <div class="progress progress-striped active">
-          <div class="progress-bar progress-bar-info progress-bar-full"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Welcome to the Brewster Conservation Trust!</h4>
-          </div>
-          <div class="modal-body">
-            <ul class="nav nav-tabs nav-justified" id="aboutTabs">
-              <!--<li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the project</a></li>-->
-              <!--<li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Contact us</a></li>-->
-              <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i>&nbsp;Metadata <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#boroughs-tab" data-toggle="tab">Boroughs</a></li>
-                  <li><a href="#subway-lines-tab" data-toggle="tab">Subway Lines</a></li>
-                  <li><a href="#theaters-tab" data-toggle="tab">Theaters</a></li>
-                  <li><a href="#museums-tab" data-toggle="tab">Museums</a></li>
-                </ul>
-              </li>
+            <ul class="nav navbar-nav">
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-image white"></i>&nbsp;&nbsp;Show Legend</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Search Grantors List</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="slideshow-btn"><i class="fa fa-camera-retro white"></i>&nbsp;&nbsp;Image Gallery</a></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
+                <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="welcome-btn"><i class="fa fa-file-text white"></i>&nbsp;&nbsp;Introduction</a></li>
             </ul>
-            <div class="tab-content" id="aboutTabsContent">
-              <div class="tab-pane fade active in" id="about">
-                <p>A simple, responsive template for building web mapping applications with <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, and <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a>. Open source, MIT licensed, and available on <a href="https://github.com/bmcbride/bootleaf" target="_blank">GitHub</a>.</p>
-                <div class="panel panel-primary">
-                  <div class="panel-heading">Features</div>
-                  <ul class="list-group">
-                    <li class="list-group-item">Fullscreen mobile-friendly map template with responsive navbar and modal placeholders</li>
-                    <li class="list-group-item">jQuery loading of external GeoJSON files</li>
-                    <li class="list-group-item">Logical multiple layer marker clustering via the <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">leaflet marker cluster plugin</a></li>
-                    <li class="list-group-item">Elegant client-side multi-layer feature search with autocomplete using <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a></li>
-                    <li class="list-group-item">Responsive sidebar feature list synced with map bounds, which includes sorting and filtering via <a href="http://listjs.com/" target="_blank">list.js</a></li>
-                    <li class="list-group-item">Marker icons included in grouped layer control via the <a href="https://github.com/ismyrnow/Leaflet.groupedlayercontrol" target="_blank">grouped layer control plugin</a></li>
-                  </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+
+<!--sidebar panel for grantors list-->
+<div id="container">
+    <div id="sidebar">
+        <div class="sidebar-wrapper">
+            <div class="panel panel-default" id="features">
+                <div class="panel-heading">
+                    <h3 class="panel-title">List of Grantors
+                        <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button>
+                    </h3>
                 </div>
-              </div>
-              <div id="disclaimer" class="tab-pane fade text-danger">
-                <p>The data provided on this site is for informational and planning purposes only.</p>
-                <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections as might result from a complete title search and/or accurate field survey.</p>
-              </div>
-              <!--<div class="tab-pane fade" id="contact">-->
-                <!--<form id="contact-form">-->
-                  <!--<div class="well well-sm">-->
-                    <!--<div class="row">-->
-                      <!--<div class="col-md-4">-->
-                        <!--<div class="form-group">-->
-                          <!--<label for="first-name">First Name:</label>-->
-                          <!--<input type="text" class="form-control" id="first-name">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                          <!--<label for="last-name">Last Name:</label>-->
-                          <!--<input type="text" class="form-control" id="last-email">-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                          <!--<label for="email">Email:</label>-->
-                          <!--<input type="text" class="form-control" id="email">-->
-                        <!--</div>-->
-                      <!--</div>-->
-                      <!--<div class="col-md-8">-->
-                        <!--<label for="message">Message:</label>-->
-                        <!--<textarea class="form-control" rows="8" id="message"></textarea>-->
-                      <!--</div>-->
-                      <!--<div class="col-md-12">-->
-                        <!--<p>-->
-                          <!--<button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>-->
-                        <!--</p>-->
-                      <!--</div>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                <!--</form>-->
-              <!--</div>-->
-              <div class="tab-pane fade" id="boroughs-tab">
-                <p>Borough data courtesy of <a href="http://www.nyc.gov/html/dcp/pdf/bytes/nybbwi_metadata.pdf" target="_blank">New York City Department of City Planning</a></p>
-              </div>
-              <div class="tab-pane fade" id="subway-lines-tab">
-                <p><a href="http://spatialityblog.com/2010/07/08/mta-gis-data-update/#datalinks" target="_blank">MTA Subway data</a> courtesy of the <a href="http://www.urbanresearch.org/about/cur-components/cuny-mapping-service" target="_blank">CUNY Mapping Service at the Center for Urban Research</a></p>
-              </div>
-              <div class="tab-pane fade" id="theaters-tab">
-                <p>Theater data courtesy of <a href="https://data.cityofnewyork.us/Recreation/Theaters/kdu2-865w" target="_blank">NYC Department of Information & Telecommunications (DoITT)</a></p>
-              </div>
-              <div class="tab-pane fade" id="museums-tab">
-                <p>Museum data courtesy of <a href="https://data.cityofnewyork.us/Recreation/Museums-and-Galleries/sat5-adpb" target="_blank">NYC Department of Information & Telecommunications (DoITT)</a></p>
-              </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <input type="text" class="form-control search" placeholder="Search by name"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-table">
+                    <table class="table table-hover" id="feature-list">
+                        <thead class="hidden">
+                        <tr>
+                            <th>Icon</th>
+                        <tr>
+                        <tr>
+                            <th>Name</th>
+                        <tr>
+                        <tr>
+                            <th>Chevron</th>
+                        <tr>
+                        </thead>
+                        <tbody class="list"></tbody>
+                    </table>
+                </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
+    <div id="map"></div>
+</div>
 
-    <div class="modal fade" id="legendModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
+<!--loading indicator dialog-->
+<div id="loading">
+    <div class="loading-indicator">
+        <div class="progress progress-striped active">
+            <div class="progress-bar progress-bar-info progress-bar-full"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--about modal container-->
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Map Legend</h4>
-          </div>
-          <div class="modal-body">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Welcome to the Brewster Conservation Trust Interactive Web Map</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et metus at turpis viverra maximus. Maecenas faucibus auctor gravida. Donec quis mattis nunc. In bibendum
+                        mattis molestie. Praesent ac dolor non justo porta pretium. Vivamus hendrerit facilisis velit, at pulvinar enim euismod sit amet. Sed at lectus vel ante mollis lacinia. Nunc
+                        bibendum, augue id suscipit luctus, enim libero gravida nulla, congue iaculis augue velit sit amet massa. Suspendisse facilisis ornare est vel maximus. Suspendisse sed volutpat
+                        libero. Integer dapibus turpis magna, volutpat blandit mi convallis et. Quisque pellentesque mauris ut tortor hendrerit pretium. Sed velit neque, varius eget mollis et,
+                        elementum ac massa. Morbi eu ligula id tellus bibendum laoreet. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam quis nibh
+                        purus.</p>
+                    <p>The data provided on this site is for informational and planning purposes only.</p>
+                    <p>Absolutely no accuracy or completeness guarantee is implied or intended.</p>
+                    <p>All information on this map is subject to such variations and corrections as might result
+                        from a complete title search and/or accurate field survey.</p>
+                    <p>All data and associated information provided by the Brewster Conservation Trust</p>
+                </div>
+                <!--</div>-->
+                <!--</div>-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
 
-        <img src="assets/img/greenTree.png">&nbsp&nbsp&nbspBCT Owned Land<br>
-        <img src="assets/img/blueTree.png">&nbsp&nbsp&nbspConservation Restriction on Private Land<br>
-        <img src="assets/img/redTree.png">&nbsp&nbsp&nbspConservation Restriction on Town Land
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
         </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-
-
-    <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
+<div class="modal fade" id="legendModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title text-primary" id="feature-title"></h4>
-          </div>
-          <div class="modal-body" id="feature-info"></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Map Legend</h4>
+            </div>
+            <div class="modal-body">
 
-    <div class="modal fade" id="attributionModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
+                <img src="assets/img/greenTree.png">&nbsp&nbsp&nbspBCT Owned Land<br>
+                <img src="assets/img/blueTree.png">&nbsp&nbsp&nbspConservation Restriction on Private Land<br>
+                <img src="assets/img/redTree.png">&nbsp&nbsp&nbspConservation Restriction on Town Land
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="slideshowModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="bct-navbar-gallery">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title">BCT Property Slide Show</h3>
+            </div>
+            <div class="modal-body">
+                <div id="bct_nanogallery2"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">
-              Developed by CapeCodGIS
-            </h4>
-          </div>
-          <div class="modal-body">
-            <div id="attribution"></div>
-          </div>
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title text-primary" id="feature-title"></h4>
+            </div>
+            <div class="modal-body" id="feature-info"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
-    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.4.0/Control.MiniMap.min.js"></script>
-    <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
-    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
-    <script src="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.min.js"></script>
-    <script src="assets/js/leaflet.navbar/Leaflet.NavBar.js"></script>
-    <script src="assets/js/Leaflet.MakiMarkers.js"></script>
-    <script src="assets/js/leaflet.ajax.js"></script>
-    <script src="assets/js/leaflet.easyPrint.js"></script>
-    <script src="assets/js/app.js"></script>
-  </body>
+
+<div class="modal fade" id="attributionModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    Developed by CapeCodGIS
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div id="attribution"></div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/js/bootstrap-tour.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.5/typeahead.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.3.0"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.4.0/Control.MiniMap.min.js"></script>
+<script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/Leaflet.GoogleMutant.js'></script>
+<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+<script src="assets/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.min.js"></script>
+<script src="assets/js/leaflet.navbar/Leaflet.NavBar.js"></script>
+<script src="assets/js/Leaflet.MakiMarkers.js"></script>
+<script src="assets/js/leaflet.ajax.js"></script>
+<script src="assets/js/leaflet.easyPrint.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
 </html>
